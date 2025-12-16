@@ -10,7 +10,7 @@ import os
 REGION = "us-east-1"
 MODEL_ID = "amazon.nova-reel-v1:0"
 
-S3_BUCKET = "nova-demo-workshop"   # must exist
+S3_BUCKET = "your_s3_bucket_name"   # must exist
 S3_PREFIX = "videos/"
 OUTPUT_FILE = "output.mp4"
 
