@@ -8,7 +8,7 @@ from strands.tools.decorator import tool
 # =========================
 # CONFIG
 # =========================
-OPENWEATHER_API_KEY = "2c3bb2d8515973d551473828e22d620c"
+OPENWEATHER_API_KEY = "YOUR_OPENWEATHER_API_KEY"
 
 # =========================
 # TOOL CALL TRACKER
