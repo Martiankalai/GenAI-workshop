@@ -1,0 +1,15 @@
+streamlit
+requests
+strands
+strands-agents
+boto3
+python-dotenv
+pypdf
+langchain
+langchain-aws
+langchain-community
+langchain-core
+langchain-text-splitters
+langsmith
+faiss-cpu
+botocore
