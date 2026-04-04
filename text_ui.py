@@ -1,5 +1,6 @@
 import boto3
 import time
+import streamlit as st
 
 
 # ---------------------------------------
@@ -7,7 +8,7 @@ import time
 # ---------------------------------------
 bedrock_client = boto3.client(
     service_name="bedrock-runtime",
-    region_name="us-east-1"  # models region
+    region_name="us-east-1"
 )
 
 MODEL_ID = "us.anthropic.claude-sonnet-4-20250514-v1:0"
@@ -40,7 +41,6 @@ def call_claude(system_prompt: str, user_question: str) -> str:
         response = bedrock_client.converse(**params)
         print(f"[INFO] Claude call took {time.time() - start_time:.2f}s")
 
-        # Extract final answer
         return response["output"]["message"]["content"][0]["text"]
 
     except Exception as e:
@@ -48,17 +48,19 @@ def call_claude(system_prompt: str, user_question: str) -> str:
 
 
 # ---------------------------------------
-# SIMPLE DEMO EXECUTION
+# STREAMLIT UI
 # ---------------------------------------
-if __name__ == "__main__":
-    SYSTEM_PROMPT = "You are an AI assistant, and you need to answer the user's question."
+st.set_page_config(page_title="Claude 3.7 Sonnet", layout="centered")
 
-    print("Claude 3.7 Sonnet Demo")
-    print("-" * 30)
+st.title("🤖 Claude LLM Demo chatbot")
 
-    user_question = input("Ask Claude a question: ")
+SYSTEM_PROMPT = "You are an AI assistant, and you need to answer the user's question."
 
-    answer = call_claude(SYSTEM_PROMPT, user_question)
+user_question = st.text_input("Ask Claude a question:")
 
-    print("\nClaude says:\n")
-    print(answer)
+if st.button("Submit") and user_question:
+    with st.spinner("Thinking..."):
+        answer = call_claude(SYSTEM_PROMPT, user_question)
+
+    st.subheader("Claude says:")
+    st.write(answer)
