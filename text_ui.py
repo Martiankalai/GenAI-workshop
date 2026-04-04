@@ -11,7 +11,7 @@ bedrock_client = boto3.client(
     region_name="us-east-1"
 )
 
-MODEL_ID = "us.anthropic.claude-sonnet-4-20250514-v1:0"
+MODEL_ID = "us.amazon.nova-pro-v1:0"
 
 
 # ---------------------------------------
